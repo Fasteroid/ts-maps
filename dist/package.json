@@ -1,0 +1,37 @@
+{
+    "name": "@fasteroid/maps",
+    "version": "1.0.0",
+    "description": "Some extensions and variations of Map<K, V>",
+    "main": "index.js",
+    "module": "index.js",
+    "types": "index.d.ts",
+    "scripts": {
+        "build": "tsc",
+        "dev": "tsc --watch"
+    },
+    "author": "Fasteroid",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Fasteroid/ts-maps.git"
+    },
+    "keywords": [
+        "map",
+        "hashmap",
+        "util"
+    ],
+    "bugs": {
+        "url": "https://github.com/Fasteroid/ts-maps/issues"
+    },
+    "homepage": "https://github.com/Fasteroid/ts-maps#readme",
+    "devDependencies": {
+        "@types/node": "^20.17.6",
+        "typescript": "^5.6.3"
+    },
+    "files": [
+        "**/**.js",
+        "**/**.d.ts",
+        "**/**.js.map",
+        "**/**.d.ts.map"
+    ]
+}
