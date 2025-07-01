@@ -68,10 +68,8 @@ export class CollisionMap<K, V> implements Map<K, V> {
         this.storage.forEach( (kv) => callback(kv[1], kv[0], this) );
     }
 
-    public *[Symbol.iterator](): MapIterator<[K, V]> {
-        for( let kv of this.storage.values() ){
-            yield [kv[0], kv[1]];
-        }
+    public [Symbol.iterator](): MapIterator<[K, V]> {
+        return this.storage.values()
     }
 
     public entries(): MapIterator<[K, V]> {
