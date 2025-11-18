@@ -1,0 +1,1 @@
+export type Primitive = number | bigint | symbol | string | null | undefined | boolean
