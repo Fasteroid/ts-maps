@@ -1,4 +1,4 @@
-import type { Primitive } from "./internals/types";
+import type { Primitive } from "./internals/internals";
 
 /**
  * A {@linkcode Map} where you define how to hash keys into primitives.

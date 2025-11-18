@@ -1,6 +1,6 @@
 import { CollisionMap } from "./CollisionMap";
 import type { AutoMap } from "./AutoMap";
-import type { Primitive } from "./internals/types";
+import type { Primitive } from "./internals/internals";
 
 /**
  * A hybrid class of {@linkcode CollisionMap} and {@linkcode AutoMap}.
