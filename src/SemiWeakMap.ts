@@ -24,9 +24,4 @@ export class SemiWeakMap<K, V> extends WeakMap<any, V> {
         return !isWeakKey(key) ? this._primitives.delete(key) : super.delete(key);
     }
 
-    /** An iterable of the primitives in this {@linkcode SemiWeakMap} */
-    public primitives() {
-        return this._primitives.entries();
-    }
-
 }

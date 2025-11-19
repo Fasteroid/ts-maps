@@ -1,12 +1,11 @@
 import { CollisionMap } from "./CollisionMap";
-import type { AutoMap } from "./AutoMap";
+import { AutoMap } from "./AutoMap";
 import type { Primitive } from "./internals/internals";
 
 /**
- * A hybrid class of {@linkcode CollisionMap} and {@linkcode AutoMap}.
+ * See {@linkcode CollisionMap} and {@linkcode AutoMap}
  */
 export class AutoCollisionMap<K, V> extends CollisionMap<K, V> {
-
     /**
      * @param collider How to hash the keys
      * @param computer Provides default value to create for an unpopulated key
@@ -16,12 +15,11 @@ export class AutoCollisionMap<K, V> extends CollisionMap<K, V> {
     }
 
     public override get(key: K): V {
-        let value = super.get(key);
-        if( value === undefined ){
-            value = this.computer(key);
-            super.set(key, value);
+        if( !super.has(key) ){
+            super.set(key, this.computer(key));
         }
-        return value;
+        return super.get(key)!;
     }
 
+    public override [Symbol.toStringTag] = "AutoCollisionMap";
 }
