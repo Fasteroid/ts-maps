@@ -100,9 +100,3 @@ export class TagMap<K extends Set<unknown>, V> implements Map<K, V> {
     [Symbol.toStringTag] = this.constructor.name;
        
 }
-
-
-const test = new TagMap< Set<string>, string >();
-
-test.set( new Set(["a", "b"]), "hello" );
-console.log( test.get( new Set(["b", "a"]) ) );
