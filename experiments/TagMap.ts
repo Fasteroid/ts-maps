@@ -1,9 +1,5 @@
-import { AutoSemiWeakMap } from "./AutoSemiWeakMap";
-import { AutoWeakMap } from "./AutoWeakMap";
-import { AutoWeakPairing } from "./AutoWeakPairing";
-import { isWeakKey } from "./internals/internals";
-import { SemiWeakMap } from "./SemiWeakMap";
-import { WeakPairing } from "./WeakPairing";
+import { AutoWeakPairing } from "../src/AutoWeakPairing";
+import { isWeakKey } from "../src/internals/internals";
 
 type SerializedSet = {
     /** values */
@@ -16,6 +12,8 @@ type SerializedSet = {
  * A variation of map {@linkcode Map} that indexes items by unordered {@linkcode Set | Sets} of keys.
  * 
  * The same set identity will always map to the same stored value.
+ * 
+ * **EXPERIMENTAL, this is not battle-tested yet.**
  */
 export class TagMap<K extends Set<unknown>, V> implements Map<K, V> {
 

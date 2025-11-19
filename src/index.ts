@@ -7,7 +7,7 @@ import { AutoWeakPairing } from "./AutoWeakPairing";
 import { CollisionMap } from "./CollisionMap";
 import { SemiWeakMap } from "./SemiWeakMap";
 import { WeakPairing } from "./WeakPairing";
-import { TagMap } from "./TagMap";
+import { TagMap } from "../experiments/TagMap";
 
 export { 
     /** @deprecated - please import from `@fasteroid/maps/AutoCollisionMap` instead */
