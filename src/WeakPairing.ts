@@ -77,4 +77,6 @@ export class WeakPairing<K, V> {
         return true;
     }
 
+    [Symbol.toStringTag] = this.constructor.name;
+
 }

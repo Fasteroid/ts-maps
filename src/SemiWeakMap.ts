@@ -24,4 +24,6 @@ export class SemiWeakMap<K, V> extends WeakMap<any, V> {
         return !isWeakKey(key) ? this._primitives.delete(key) : super.delete(key);
     }
 
+    public override [Symbol.toStringTag] = this.constructor.name;
+
 }

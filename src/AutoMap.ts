@@ -15,5 +15,5 @@ export class AutoMap<K, V> extends Map<K, V> {
         return super.get(key)!;
     }
 
-    public override [Symbol.toStringTag] = "AutoMap";
+    override [Symbol.toStringTag] = this.constructor.name;
 }

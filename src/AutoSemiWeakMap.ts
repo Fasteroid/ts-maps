@@ -16,6 +16,6 @@ export class AutoSemiWeakMap<K, V> extends SemiWeakMap<any, V> {
         }
         return super.get(key)!;
     }
-
-    public override [Symbol.toStringTag] = "AutoSemiWeakMap";
+    
+    override [Symbol.toStringTag] = this.constructor.name;
 }

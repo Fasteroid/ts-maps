@@ -97,7 +97,7 @@ export class TagMap<K extends Set<unknown>, V> implements Map<K, V> {
         return this.storage[Symbol.iterator]().map( ([k, v]) => [this.unpackTags(k), v] as [K, V] );
     }
 
-    [Symbol.toStringTag] = "TagMap";
+    [Symbol.toStringTag] = this.constructor.name;
        
 }
 

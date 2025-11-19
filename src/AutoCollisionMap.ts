@@ -21,5 +21,5 @@ export class AutoCollisionMap<K, V> extends CollisionMap<K, V> {
         return super.get(key)!;
     }
 
-    public override [Symbol.toStringTag] = "AutoCollisionMap";
+    override [Symbol.toStringTag] = this.constructor.name;
 }

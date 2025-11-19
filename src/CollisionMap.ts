@@ -65,6 +65,6 @@ export class CollisionMap<K, V> implements Map<K, V> {
         return this.storage.values().map(kv => kv[1])[Symbol.iterator]();
     }
 
-    public [Symbol.toStringTag] = "CollisionMap";
+    [Symbol.toStringTag] = this.constructor.name;
 
 }

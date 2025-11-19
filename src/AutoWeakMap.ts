@@ -15,5 +15,5 @@ export class AutoWeakMap<K extends WeakKey, V> extends WeakMap<K, V> {
         return super.get(key)!;
     }
 
-    public override [Symbol.toStringTag] = "AutoWeakMap";
+    override [Symbol.toStringTag] = this.constructor.name;
 }

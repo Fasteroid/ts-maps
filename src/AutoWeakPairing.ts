@@ -28,4 +28,6 @@ export class AutoWeakPairing<K, V> extends WeakPairing<K, V> {
         return super.getValue(key)!;
     }
 
+    override [Symbol.toStringTag] = this.constructor.name;
+
 }
