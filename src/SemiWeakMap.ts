@@ -1,7 +1,7 @@
 import { isWeakKey } from "./internals/internals";
 
 /**
- * Like a normal {@link WeakMap}, but you can store primitives on it.
+ * Like a native {@link WeakMap}, but you can store primitives on it.
  */
 export class SemiWeakMap<K, V> extends WeakMap<any, V> {
 

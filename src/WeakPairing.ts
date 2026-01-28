@@ -3,11 +3,11 @@ import { SemiWeakRef } from "./internals/SemiWeakRef";
 import { SemiWeakMap } from "./SemiWeakMap";
 
 /**
- * Like a {@link WeakMap}, but the values are also weakly held.  
+ * Like a {@link SemiWeakMap}, but the values are also weakly held.  
  * Useful as a weak bidirectional lookup table.
  * 
- * If either the key or value go out of scope and don't exist elsewhere  
- * in memory, the pair in this map will (eventually) cease to exist.
+ * Values referenced by a pair can be garbage-collected as long as 
+ * at least one of them is garbage-collectable.
  */
 export class WeakPairing<K, V> {
 

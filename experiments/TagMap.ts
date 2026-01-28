@@ -9,8 +9,7 @@ type SerializedSet = {
 }
 
 /**
- * A variation of map {@linkcode Map} that indexes items by unordered {@linkcode Set | Sets} of keys.
- * 
+ * Indexes items by unordered {@link Set | sets} of keys rather than traditional single keys.\
  * The same set identity will always map to the same stored value.
  * 
  * **EXPERIMENTAL, this is not battle-tested yet.**
