@@ -30,8 +30,7 @@ Has one method, `apply(victims: T[])`, which applies a consistent order to a cop
 
 ## Experimental
 ### *`TagMap<Ks, V>`*
-Indexes items by unordered [sets](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) of keys rather than traditional single keys.\
-The same set identity will always map to the same stored value.
+Indexes items by unordered collections of keys rather than traditional single keys.
 
 ## License
 

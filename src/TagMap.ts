@@ -1,5 +1,5 @@
-import { AutoWeakPairing } from "../src/AutoWeakPairing";
-import { isWeakKey } from "../src/internals/internals";
+import { AutoWeakPairing } from "./AutoWeakPairing";
+import { isWeakKey } from "./internals/internals";
 
 type SerializedSet = {
     /** values */
@@ -8,13 +8,37 @@ type SerializedSet = {
     r: bigint[]
 }
 
+
+// Because Douglas Crockford is stubborn, we have to do this horrible shit to support bigint.
+function bigintReplacer(this: any, key: string, value: any): any {
+    if( typeof value === 'string' ) {
+        `s${value}`
+    }
+    if( typeof value === 'bigint' ) {
+        return `n${value.toString()}`;
+    }
+}
+
+function bigintReviver(this: any, key: string, value: any): any {
+    if( typeof value === 'string' && value.length > 0 ) {
+        const prefix = value[0];
+        const body = value.slice(1);
+        if( prefix === 's' ) {
+            return body;
+        }
+        if( prefix === 'n' ) {
+            return BigInt(body);
+        }
+    }
+    return value;
+}
+
 /**
- * Indexes items by unordered {@link Set | sets} of keys rather than traditional single keys.\
- * The same set identity will always map to the same stored value.
+ * Indexes items by unordered collections of keys rather than traditional single keys.
  * 
  * **EXPERIMENTAL, this is not battle-tested yet.**
  */
-export class TagMap<K extends Set<unknown>, V> implements Map<K, V> {
+export class TagMap<K extends unknown[], V> implements Map<K, V> {
 
     private regIndex = 0n;
 
@@ -39,15 +63,15 @@ export class TagMap<K extends Set<unknown>, V> implements Map<K, V> {
         }
         serialized.v.sort();
         serialized.r.sort();
-        return JSON.stringify(serialized);
+        return JSON.stringify(serialized, bigintReplacer);
     }
 
     /** Unpacks a key from {@linkcode storage} into a set of keys */
     private unpackTags(serialized: string): K {
-        const { v, r } = JSON.parse(serialized) as SerializedSet;
-        const set = new Set(v) as K;
+        const { v, r } = JSON.parse(serialized, bigintReviver) as SerializedSet;
+        const set = [] as unknown as K;
         for( const ref of r ) {
-            set.add( this.objectRegistry.getKey(ref) );
+            set.push( this.objectRegistry.getKey(ref) );
         }
         return set;
     }

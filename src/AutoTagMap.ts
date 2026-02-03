@@ -1,14 +1,12 @@
-import { TagMap } from "./TagMap.ts";
-import type { AutoMap } from "../src/AutoMap.ts";
+import { TagMap } from "./TagMap";
+import type { AutoMap } from "./AutoMap";
 
 
 
 /**
  * See {@linkcode AutoMap} and {@linkcode TagMap}
- * 
- * **EXPERIMENTAL, this is not battle-tested yet.**
  */
-export class AutoTagMap<K extends Set<unknown>, V> extends TagMap<K, V> {
+export class AutoTagMap<K extends unknown[], V> extends TagMap<K, V> {
 
     /**
      * @param computer Provides default value to create for an unpopulated key
