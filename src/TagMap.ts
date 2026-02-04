@@ -20,7 +20,7 @@ function bigintReplacer(this: any, key: string, value: any): any {
 }
 
 function bigintReviver(this: any, key: string, value: any): any {
-    if( typeof value === 'string' && value.length > 0 ) {
+    if( typeof value === 'string' ) {
         const prefix = value[0];
         const body = value.slice(1);
         if( prefix === 's' ) {
@@ -35,10 +35,8 @@ function bigintReviver(this: any, key: string, value: any): any {
 
 /**
  * Indexes items by unordered collections of keys rather than traditional single keys.
- * 
- * **EXPERIMENTAL, this is not battle-tested yet.**
  */
-export class TagMap<K extends unknown[], V> implements Map<K, V> {
+export class TagMap<K, V> implements Map<K[], V> {
 
     private regIndex = 0n;
 
@@ -47,7 +45,7 @@ export class TagMap<K extends unknown[], V> implements Map<K, V> {
     private storage = new Map<string, V>();
 
     /** Packs a set of tags into a string */
-    private packTags(set: K){
+    private packTags(set: K[]){
         const serialized: SerializedSet = {
             v: [],
             r: []
@@ -67,32 +65,32 @@ export class TagMap<K extends unknown[], V> implements Map<K, V> {
     }
 
     /** Unpacks a key from {@linkcode storage} into a set of keys */
-    private unpackTags(serialized: string): K {
+    private unpackTags(serialized: string): K[] {
         const { v, r } = JSON.parse(serialized, bigintReviver) as SerializedSet;
-        const set = [] as unknown as K;
+        const set = [] as K[];
         for( const ref of r ) {
-            set.push( this.objectRegistry.getKey(ref) );
+            set.push( this.objectRegistry.getKey(ref) as K );
         }
         return set;
     }
     
-    public set(tags: K, value: V) {
+    public set(tags: K[], value: V) {
         const key = this.packTags(tags);
         this.storage.set(key, value);
         return this;
     }
 
-    public get(tags: K): V | undefined {
+    public get(tags: K[]): V | undefined {
         const key = this.packTags(tags);
         return this.storage.get(key);
     }
 
-    public has(tags: K): boolean {
+    public has(tags: K[]): boolean {
         const key = this.packTags(tags);
         return this.storage.has(key);
     }
 
-    public delete(tags: K): boolean {
+    public delete(tags: K[]): boolean {
         const key = this.packTags(tags);
         return this.storage.delete(key);
     }
@@ -107,7 +105,7 @@ export class TagMap<K extends unknown[], V> implements Map<K, V> {
 
     // @ts-ignore
     public forEach( 
-        fn: (value: V, key: K, map: TagMap<K, V>) => void, 
+        fn: (value: V, key: K[], map: TagMap<K, V>) => void, 
         thisArg?: any
     ): 
     void {
@@ -115,7 +113,7 @@ export class TagMap<K extends unknown[], V> implements Map<K, V> {
     }
 
     [Symbol.iterator]() {
-        return this.storage[Symbol.iterator]().map( ([k, v]) => [this.unpackTags(k), v] as [K, V] );
+        return this.storage[Symbol.iterator]().map( ([k, v]) => [this.unpackTags(k), v] as [K[], V] );
     }
 
     [Symbol.toStringTag] = this.constructor.name;

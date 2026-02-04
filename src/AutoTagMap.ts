@@ -6,14 +6,14 @@ import type { AutoMap } from "./AutoMap";
 /**
  * See {@linkcode AutoMap} and {@linkcode TagMap}
  */
-export class AutoTagMap<K extends unknown[], V> extends TagMap<K, V> {
+export class AutoTagMap<K, V> extends TagMap<K, V> {
 
     /**
      * @param computer Provides default value to create for an unpopulated key
      */
-    public constructor( protected computer: (key: K) => V ){ super(); }
+    public constructor( protected computer: (keys: K[]) => V ){ super(); }
 
-    public override get(key: K): V {
+    public override get(key: K[]): V {
         if( !super.has(key) ){
             super.set(key, this.computer(key));
         }

@@ -24,12 +24,11 @@ Like a [`SemiWeakMap`](#semiweakmapk-v), but the values are also weakly held. &n
 Values referenced by a pair can be garbage-collected as long as *at least* one of them is garbage-collectable.
 
 ### `Ordering<T>`
-Stores the concept of an enumerable "order" for any set of values.\
-Has one method, `apply(victims: T[])`, which applies a consistent order to a copy of the passed array.
-> ##### ⚠️⠀The ordering is not dependent on the contents of the objects, so don't rely on it being the same between program executions!
+Stores a consistent "order" for any set of values.\
+Has one method, `apply(values: T[])`, which sorts the values into said order.
+> ##### ⚠️⠀Objects are sorted by reference, not contents. &nbsp;Don't assume the same order between program executions.
 
-## Experimental
-### *`TagMap<Ks, V>`*
+### `TagMap<K, V>`
 Indexes items by unordered collections of keys rather than traditional single keys.
 
 ## License
