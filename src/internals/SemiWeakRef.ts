@@ -2,9 +2,9 @@ import { isWeakKey } from "./internals";
 
 /** A wrapper around {@linkcode WeakRef} which allows it to hold non-weak values too */
 export class SemiWeakRef<T> {
-    private primitive?: T
+    public readonly primitive?: T
     // @ts-ignore(2344); it's fine
-    private object?:    WeakRef<T>
+    public readonly object?:    WeakRef<T>
 
     constructor(value: T) {
         if( isWeakKey(value) ) {

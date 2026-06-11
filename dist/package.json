@@ -1,6 +1,6 @@
 {
     "name": "@fasteroid/maps",
-    "version": "3.0.0",
+    "version": "3.1.0",
     "description": "Some extensions and variations of Map<K, V>",
     "main": "index.js",
     "module": "index.js",
@@ -8,7 +8,8 @@
     "scripts": {
         "build": "tsc",
         "dev": "tsc --watch",
-        "test": "bun test --expose-gc --max-old-space-size=512"
+        "test-node": "tsx --test --expose-gc --max-old-space-size=512",
+        "test-bun": "bun test --expose-gc --max-old-space-size=512"
     },
     "author": "Fasteroid",
     "license": "MIT",
@@ -26,15 +27,15 @@
     },
     "homepage": "https://github.com/Fasteroid/ts-maps#readme",
     "devDependencies": {
+        "@types/bun": "^1.3.14",
         "@types/node": "^20.17.6",
         "rxjs": "^7.8.0",
+        "tsx": "^4.22.4",
         "typescript": "^5.6.3"
     },
-    "files": [        
-        "**/**.js",
-        "**/**.d.ts",
-        "**/**.js.map",
-        "**/**.d.ts.map"
+    "files": [
+
+     "**/**.d.ts.map"
     ],
     "exports": {
         "./*": {

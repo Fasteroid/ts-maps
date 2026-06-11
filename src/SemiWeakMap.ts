@@ -24,6 +24,13 @@ export class SemiWeakMap<K, V> extends WeakMap<any, V> {
         return !isWeakKey(key) ? this._primitives.delete(key) : super.delete(key);
     }
 
+    /**
+     * Gets a `readonly` reference to the internal list of primitive-keyed values.
+     */
+    public get primitives(): ReadonlyMap<K, V> {
+        return this._primitives;
+    }
+
     public override [Symbol.toStringTag] = this.constructor.name;
 
 }

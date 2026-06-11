@@ -4,7 +4,8 @@
     "exclude": ["node_modules", "dist", "**/tests"],
     "compileOnSave": true,
     "compilerOptions": {
-        "outDir": "./dist"
+        "outDir": "./dist",
+        "types": ["@types/bun"]
     },
     "types": ["node"]
 }
