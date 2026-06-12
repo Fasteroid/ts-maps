@@ -1,3 +1,4 @@
+import { IsDefined } from './internals/internals';
 import { SemiWeakRef } from './internals/SemiWeakRef';
 import { SemiWeakMap } from './SemiWeakMap';
 
@@ -6,8 +7,6 @@ import { SemiWeakMap } from './SemiWeakMap';
 function nextMacro(resolve: (_: any) => any) {
     setTimeout(resolve, 10);
 }
-
-type IsDefined<T> = undefined extends T ? never : any
 
 /**
  * Like a {@link SemiWeakMap}, but the values are also weakly held.  

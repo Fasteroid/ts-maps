@@ -3,7 +3,7 @@ import type { Primitive } from "./internals/internals";
 /**
  * A {@linkcode Map} where you define how to hash keys into primitives.
  * 
- * *Because sometimes, you may want hash collisions.*
+ * *Because sometimes, you may want hash collisions.*`
  */
 export class CollisionMap<K, V> implements Map<K, V> {
 
@@ -16,6 +16,25 @@ export class CollisionMap<K, V> implements Map<K, V> {
 
     public get(key: K) {
         return this.storage.get( this.collider(key) )?.[1]
+    }
+
+    public getOrInsert(key: K, defaultValue: V): V {
+        const collisionKey = this.collider(key);
+        if( !this.storage.has(collisionKey) ){
+            this.storage.set( collisionKey, [key, defaultValue] );
+            return defaultValue;
+        }
+        return this.storage.get(collisionKey)![1];
+    }
+
+    public getOrInsertComputed(key: K, callback: (key: K) => V): V {
+        const collisionKey = this.collider(key);
+        if( !this.storage.has(collisionKey) ){
+            const defaultValue = callback(key);
+            this.storage.set( collisionKey, [key, defaultValue] );
+            return defaultValue;
+        }
+        return this.storage.get(collisionKey)![1];
     }
 
     public set(key: K, value: V) {

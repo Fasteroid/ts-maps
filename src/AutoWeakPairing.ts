@@ -4,11 +4,12 @@ import { SemiWeakMap } from "./SemiWeakMap";
 
 import { WeakPairing } from "./WeakPairing";
 import type { AutoMap } from "./AutoMap";
+import { IsDefined } from "./internals/internals";
 
 /**
  * See {@linkcode WeakPairing} and {@linkcode AutoMap}
  */
-export class AutoWeakPairing<K, V> extends WeakPairing<K, V> {
+export class AutoWeakPairing<K extends IsDefined<K>, V extends IsDefined<V>> extends WeakPairing<K, V> {
 
     constructor( protected computer: (key: K) => V ) {
         super();
