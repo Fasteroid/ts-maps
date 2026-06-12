@@ -1,6 +1,6 @@
 {
     "name": "@fasteroid/maps",
-    "version": "3.2.0",
+    "version": "3.2.1",
     "description": "Some extensions and variations of Map<K, V>",
     "main": "index.js",
     "module": "index.js",
@@ -34,7 +34,8 @@
         "typescript": "^6.0.3"
     },
     "files": [
-        "**/**.d.ts.map"
+        "**/**.d.ts",
+        "**/**.js"
     ],
     "exports": {
         "./*": {
